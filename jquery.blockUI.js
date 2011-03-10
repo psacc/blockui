@@ -30,7 +30,7 @@ var setExpr = $.browser.msie && (($.browser.version < 8 && !mode) || mode < 8);
 var ie6 = $.browser.msie && /MSIE 6.0/.test(navigator.userAgent) && !mode;
 
 // global $ methods for blocking/unblocking the entire page
-$.blockUI   = function(opts) { install(window, opts); };
+$.blockUI   = function(opts) { install(window, opts); $(window).unload(function () { remove(window, opts); }); };
 $.unblockUI = function(opts) { remove(window, opts); };
 
 // convenience method for quick growl-like notifications  (http://www.google.com/search?q=growl)
